@@ -108,3 +108,66 @@ where
   and '2000-12-31'
 group by
   species;
+
+  -- jpining logic
+select
+  name
+from
+  animals
+  join owners on animals.owner_id = owners.id
+  and owners.full_name = 'Melody Pond';
+
+select
+  animals.name
+from
+  animals
+  join species on animals.species_id = species.id
+  and species.name = 'Pokemon';
+
+select
+  animals.name as animal_name,
+  owners.full_name as owner
+from
+  animals
+  right join owners on animals.owner_id = owners.id;
+
+select
+  count(animals.name) as number,
+  species.name
+from
+  animals
+  join species on animals.species_id = species.id
+group by
+  species.name;
+
+select
+  owners.full_name,
+  species.name
+from
+  owners
+  join animals on owners.id = animals.owner_id
+  join species on species.id = 2
+where
+  animals.species_id = 2
+  and owners.full_name = 'Jennifer Orwell';
+
+select
+  animals.name
+from
+  animals
+  join owners on owners.id = animals.owner_id
+  and owners.full_name = 'Dean Winchester'
+  and animals.escape_attempts = 0;
+
+-- Who owns the most animals
+SELECT
+  owners.full_name
+FROM
+  animals
+  JOIN owners ON owners.id = animals.owners_id
+GROUP BY
+  owners.full_name
+ORDER BY
+  count(name) desc
+limit
+  1;

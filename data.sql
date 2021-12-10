@@ -88,3 +88,108 @@ WHERE
   weight_kg < 0;
 
 COMMIT;
+
+-- inserting values of owners
+insert into
+  owners (full_name, age)
+values
+  ('Sam Smith', 34),
+  ('Jennifer Orwell', 19),
+  ('Bob', 45),
+  ('Melody Pond', 77),
+  ('Dean Winchester', 14),
+  ('Jodie Whittaker ', 38);
+
+  insert into
+  species(name)
+values
+('Pokemon'),
+('Digimon');
+update
+  animals
+set
+  species_id = 2
+where
+  name like '%mon';
+
+update
+  animals
+set
+  species_id = 1
+where
+  species_id is null;
+
+update
+  animals
+set
+  owner_id =(
+    select
+      id
+    from
+      owners
+    where
+      full_name = 'Sam Smith'
+  )
+where
+  name = 'Agumon';
+
+update
+  animals
+set
+  owner_id =(
+    select
+      id
+    from
+      owners
+    where
+      full_name = 'Jennifer Orwell'
+  )
+where
+  name = 'Gabumon'
+  or name = 'Pikachu';
+
+update
+  animals
+set
+  owner_id =(
+    select
+      id
+    from
+      owners
+    where
+      full_name = 'Bob'
+  )
+where
+  name = 'Devimon'
+  or name = 'Plantmon';
+
+update
+  animals
+set
+  owner_id =(
+    select
+      id
+    from
+      owners
+    where
+      full_name = 'Melody Pond'
+  )
+where
+  name = 'Charmander'
+  or name = 'Squirtle'
+  or name = 'Blossom';
+
+update
+  animals
+set
+  owner_id =(
+    select
+      id
+    from
+      owners
+    where
+      full_name = 'Dean Winchester'
+  )
+where
+  name = 'Angemon'
+  or name = 'Boarmon';
