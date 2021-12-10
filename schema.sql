@@ -8,3 +8,5 @@ create table animals (
     weight_kg real,
     primary key(id)
 );
+-- add new column species
+alter table animals add species varchar(100);
